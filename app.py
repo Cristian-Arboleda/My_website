@@ -1,7 +1,8 @@
 from dash import Dash, html, page_container
-from menu import * 
 
 app = Dash(__name__, use_pages=True)
+
+from menu import * # Se importa este modulo despues de haber activador use_pages
 
 app.layout = html.Div(
     id='main',
@@ -11,4 +12,5 @@ app.layout = html.Div(
     ]
 )
 
-app.run(debug=True, port=8050)
+if __name__ == '__main__':
+    app.run(debug=True, port=8050)

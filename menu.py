@@ -1,11 +1,16 @@
 from dash import html, dcc, callback, Input, Output, State, no_update, page_registry
 
-for page in page_registry.values():
-    print(page)
-
-sections = html.Nav(id='container_section',children=[
-    dcc.Link(page['name'], href=page['path'], className='link_section')
-    for page in page_registry.values()
+sections = html.Nav(id='container_section', children=[
+    *[
+        dcc.Link(page['name'], href=page['path'], className='link_section')
+        for page in page_registry.values()
+    ],
+    html.A(
+        children='Contact', 
+        href='https://cristianarboleda.onrender.com/', 
+        className='link_section',
+        target='_blank',
+    )
 ])
 
 theme = html.Div(
@@ -44,7 +49,7 @@ menu = html.Div(id='menu', children=[
 
 def update_theme(btn_theme, src_theme):
     if not btn_theme:
-        no_update
+        return no_update
     
     img_sun = '/assets/images/sun.png'
     img_moon = '/assets/images/moon.png'
