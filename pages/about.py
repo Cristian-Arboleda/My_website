@@ -33,7 +33,7 @@ presentation = html.Div(
 center = (4.5709, -74.2973)
 map = html.Div(
     className='content_element',
-    style={'grid-column': 'span 2', 'grid-row': 'span 2',},
+    style={'grid-column': 'span 2', 'grid-row': 'span 2', 'flex-direction': 'column'},
     children=[
         dl.Map(
             center=center,
@@ -70,39 +70,41 @@ university = html.Div(
 )
 
 img_dinosaur = 'assets/images/dinosaur.gif'
-text_dinosaurs = """
-
-"""
 dinosaurs = html.Div(
-    style={'grid-column': 'span 2', 'grid-row': 'span 2'},
+    style={'grid-column': 'span 2', 'grid-row': 'span 2', 'flex-direction': 'column',},
     className='content_element',
     children=[
-    html.Img(src=img_dinosaur, className='img_content')
+    html.Img(src=img_dinosaur, className='img_content', style={'height': '80%'}),
+    html.P(
+        'Los humanos modernos hemos estado en la Tierra durante aproximadamente el 0.18% del tiempo que existieron los dinosaurios.',
+        className='text_content',
+    )
     ]
 )
 
 img_carl_sagan = 'assets/images/carl_sagan.jpg'
 carl_sagan = html.Div(
     className='content_element',
-    style={'grid-column': '5', 'grid-row': '1 / span 2'},
+    style={'grid-column': '5', 'grid-row': '3 / span 2', 'flex-direction': 'column'},
     children=[
-        html.Img(src=img_carl_sagan, className='img_content')
+        html.Img(src=img_carl_sagan, className='img_content'),
+        html.P(children='Carl Sagan fue una figura clave en mi infancia, pues gracias a él descubrí mi interés por la ciencia y el conocimiento.')
     ]
 )
 
-video_black_hole = 'assets/images/black_hole_2.mp4'
 black_hole = html.Div(
     className='content_element',
-    style={'grid-column': 'span 2', 'grid-row': 'span 2'},
+    style={'grid-column': '3 / span 2', 'grid-row': '2 / span 2', 'flex-direction': 'column'},
     children=[
-        html.Video(
-            src=video_black_hole,
+        html.Img(
+            src='assets/images/black_hole.gif',
             className='img_content',
-            autoPlay=True,
-            loop=True,
-            muted=True,
-            controls=False,
-        )
+        ),
+        html.P(
+            children='''“Somos el modo que tiene el cosmos de conocerse a sí mismo.”'''
+        ),
+        html.P('“La imaginación a menudo nos lleva a mundos que nunca existieron, pero sin ella no vamos a ninguna parte.”'),
+        html.P('- Carl Sagan')
     ]
 )
 
@@ -112,10 +114,26 @@ En realidad, ambos me gustan, pero siento una atracción especial por los gatos.
 """
 cat = html.Div(
     className='content_element',
-    style={'grid-column': 'span 2', 'grid-row': 'span 1', 'display': 'flex', 'flex-direction': 'row'},
+    style={'grid-column': '3 / span 2', 'grid-row': '4 / span 1', 'display': 'flex', 'flex-direction': 'row'},
     children=[
         html.Img(src='assets/images/cat.png', className='img_content'),
         html.P(children=text)
+    ]
+)
+
+programming = html.Div(
+    className='content_element',
+    style={'grid-row': '1 / span 2', 'grid-column': '5 / span 1'},
+    children=[
+        html.Video(
+            src='assets/images/matrix.mp4',
+            autoPlay=True,
+            loop=True,
+            controls=False,
+            muted=True,
+            className='img_content'
+        ),
+        
     ]
 )
 # -------------------------------------------------------------------------------------------------------------------
@@ -126,6 +144,7 @@ content = html.Div(
         university,
         cat,
         carl_sagan,
+        programming,
         dinosaurs,
         black_hole,
     ]

@@ -57,13 +57,17 @@
   background: hsl(211.3deg 30.67% 14.71%);
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
   gap: 10px;
   text-align: center;
   align-items: center;
+  justify-content: center;
 }
 .img_content{
   height: 100%;
   width: 100%;
   border-radius: 5px;
+  object-fit: cover;
+}
+.text_content{
+  font-size: 10px;
 }
