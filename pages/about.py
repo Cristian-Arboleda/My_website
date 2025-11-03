@@ -212,8 +212,9 @@ data_3 = html.Div(
 
 data_4 = html.Div(
     className='content_element',
-    style={'grid-row': '3 / span 1', 'grid-column': '2 / span 2'},
+    style={'grid-row': '3 / span 1', 'grid-column': '1 / span 3'},
     children=[
+        html.Img(src='assets/images/data_2.gif', className='img_content'),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
@@ -270,7 +271,7 @@ data_6 = html.Div(
 
 data_7 = html.Div(
     className='content_element',
-    style={'grid-row': '4 / span 1', 'grid-column': '1 / span 2'},
+    style={'grid-row': '4 / span 2', 'grid-column': '1 / span 1', 'flex-direction': 'column'},
     children=[
         html.Div(
             className='text_container_content',
@@ -282,25 +283,40 @@ data_7 = html.Div(
                 ]),
                 html.P('Me mantengo siempre en constante actualización y con ganas de seguir aprendiendo.')
             ]
-        )
+        ),
+        html.Img(src='assets/images/data_6.gif', className='img_content')
     ]
 )
 
 data_8 = html.Div(
     className='content_element',
-    style={'grid-row': '4 / span 1', 'grid-column': '3 / span 2'},
+    style={'grid-row': '4 / span 1', 'grid-column': '3 / span 3'},
     children=[
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
             children=[
                 html.P([
-                    'He participado en distintos proyectos en equipo, aunque la mayoría los desarrollé por mi cuenta. ',
-                    'Eso me permitió afianzar mis conocimientos y aprender de forma práctica.',
+                    """
+                    En la era digital, los datos, la estadística y la inteligencia artificial son activos estratégicos para cualquier empresa: 
+                    los datos revelan comportamientos y permiten medir resultados;
+                    """,
                 ]),
+                html.P([
+                    """
+                    la estadística aporta métodos para interpretar esos datos, cuantificar la incertidumbre, 
+                    diseñar experimentos y validar hipótesis; 
+                    y la IA convierte el conocimiento en predicciones, automatizaciones y decisiones a escala.
+                    """
+                ]),
+                html.P([
+                    """
+                    Juntas, estas disciplinas mejoran la eficiencia operativa, permiten personalizar la experiencia del cliente, 
+                    optimizan recursos y ofrecen métricas precisas para evaluar el impacto de cada estrategia, transformando la información en una verdadera ventaja competitiva.
+                    """
+                ])
             ]
         ),
-        html.Img(src='assets/images/data_7.gif')
     ]
 )
 
@@ -321,7 +337,7 @@ content = html.Div(
         data_3,
         data_4,
         data_5,
-        data_6,
+        #data_6,
         data_7,
         data_8,
     ]
