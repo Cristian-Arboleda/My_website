@@ -33,7 +33,7 @@ presentation = html.Div(
 center = (4.5709, -74.2973)
 map = html.Div(
     className='content_element',
-    style={'grid-column': '1 / span 7', 'grid-row': '1 / span 8', 'flex-direction': 'column'},
+    style={'grid-column': '11 / span 7', 'grid-row': '9 / span 8', 'flex-direction': 'column'},
     children=[
         dl.Map(
             center=center,
@@ -52,6 +52,17 @@ map = html.Div(
         )
     ]
 )
+
+map_2 = html.Div(
+    className='content_element',
+    style={'grid-row': 'span 7', 'grid-column': 'span 7'},
+    children=[
+        html.Iframe(
+        src="/assets/cesium_map.html",
+        className='img_content'
+    )
+    ]
+)
 # -------------------------------------------------------------------------------------------------------------------
 
 texto = '''
@@ -61,7 +72,7 @@ esa experiencia fue fundamental para desarrollar las bases que sigo fortaleciend
 img_uni = 'assets/images/uni.png'
 university = html.Div(
     className='content_element',
-    style={'grid-column': ' span 5', 'grid-row': ' span 5', 'flex-direction': 'row'},
+    style={'grid-column': ' span 6', 'grid-row': ' span 3', 'flex-direction': 'row'},
     children=[
         html.Div(
             className='',
@@ -241,7 +252,7 @@ data_5 = html.Div(
 
 data_7 = html.Div(
     className='content_element',
-    style={'grid-row': 'span 8', 'grid-column': 'span 5', 'flex-direction': 'column'},
+    style={'grid-row': '9 / span 8', 'grid-column': '6 / span 5', 'flex-direction': 'column'},
     children=[
         html.Img(src='assets/images/data_6.gif', className='img_content', style={'width': '200px', 'height': '200px'}),
         html.Div(
@@ -249,10 +260,12 @@ data_7 = html.Div(
             style={'flex-direction': 'column'},
             children=[
                 html.P([
-                    'He participado en distintos proyectos en equipo, aunque la mayoría los desarrollé por mi cuenta. ',
-                    'Eso me permitió afianzar mis conocimientos y aprender de forma práctica.',
+                    """
+                    I have participated in several team projects, although I developed most of them on my own. 
+                    That experience allowed me to strengthen my knowledge and learn through hands-on practice.
+                    """,
                 ]),
-                html.Span('Me mantengo siempre en constante actualización y con ganas de seguir aprendiendo.')
+                html.Span('I am always seeking to stay up to date and eager to keep learning.')
             ]
         ),
     ]
@@ -260,11 +273,10 @@ data_7 = html.Div(
 
 data_8 = html.Div(
     className='content_element',
-    style={'grid-row': '9 / span 3', 'grid-column': '1 / span 5', 'text-align': 'start', 'flex-direction': 'column'},
+    style={'grid-row': '9 / span 3', 'grid-column': '1 / span 5',},
     children=[
         html.Div(
             className='text_container_content',
-            style={'flex-direction': 'column'},
             children=[
                 html.P([
                     """
@@ -294,11 +306,11 @@ data_10 = html.Div(
 content = html.Div(
     id='container_content',
     children=[
-        #map,
-        #university, 
+        map,
+        map_2,
+        university, 
         #cat,
         #carl_sagan,
-        #programming,
         #dinosaurs,
         #black_hole,
         data,

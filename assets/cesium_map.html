@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3D Globe - Bogotá, Colombia</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <style>
+    html, body, #cesiumContainer {
+      width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    // 🔑 Token Cesium Ion
+    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNjM5ZjIzOC0xYzUxLTRlYjEtOWVhMi00NmQ1YzM3ZGM3ZDMiLCJpZCI6MzU3NzQ0LCJpYXQiOjE3NjI0MTk1NTJ9.7BeFiqfHBlR-2Oy8n2tjtpA2WKlDqU4NYy2-OOqP83A";
+
+    // ⚙️ Crear terreno usando la nueva API
+    Cesium.createWorldTerrainAsync().then((terrainProvider) => {
+      const viewer = new Cesium.Viewer("cesiumContainer", {
+        terrainProvider: terrainProvider,
+        timeline: false,
+        animation: false,
+        baseLayerPicker: true,
+      });
+
+      // Centrar en Colombia
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(-74.0721, 4.7110, 5000000)
+      });
+
+      // Cargar fronteras de países
+      viewer.dataSources.add(
+        Cesium.GeoJsonDataSource.load(
+          "https://datahub.io/core/geo-countries/r/countries.geojson",
+          {
+            stroke: Cesium.Color.YELLOW,
+            fill: Cesium.Color.fromAlpha(Cesium.Color.DARKBLUE, 0.2),
+            strokeWidth: 1.5,
+            clampToGround: true,
+          }
+        )
+      );
+
+      // Agregar marcador en Bogotá
+      const pinBuilder = new Cesium.PinBuilder();
+      viewer.entities.add({
+        name: "Bogotá, Colombia",
+        position: Cesium.Cartesian3.fromDegrees(-74.0721, 4.7110),
+        billboard: {
+          image: pinBuilder.fromColor(Cesium.Color.RED, 48).toDataURL(),
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+        },
+        label: {
+          text: "Bogotá",
+          font: "16px sans-serif",
+          fillColor: Cesium.Color.WHITE,
+          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+          outlineWidth: 2,
+          pixelOffset: new Cesium.Cartesian2(0, -40)
+        }
+      });
+    });
+  </script>
+</body>
+</html>
