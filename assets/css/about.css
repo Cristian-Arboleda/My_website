@@ -14,6 +14,7 @@
   align-items: center;
   justify-items: center;
   width: 900px;
+  margin-bottom: 80px;
 }
 
 #presentation_text{
@@ -47,10 +48,11 @@
 /*---------------------------------------------------------------------------------------------*/
 #container_content{
   display: grid;
-  grid-template-columns: repeat(5, 210px);
-  grid-template-rows: repeat(5, 210px);
+  grid-template-columns: repeat(18, 50px);
+  grid-template-rows: repeat(20, 50px);
   gap: 10px;
   width: 100%;
+  font-size: 16px;
 }
 .content_element{
   padding: 15px;
@@ -60,6 +62,7 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 .img_content{
   height: 100%;
@@ -70,11 +73,11 @@
   display: flex;
   gap: 15px;
   padding: 0px 5px;
-  font-size: 18px;
 }
 span{
   color: rgb(214, 54, 54);
   font-family: monospace;
   font-weight: bold;
+  font-size: 19px;
 }
 

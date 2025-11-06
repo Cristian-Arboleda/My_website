@@ -33,7 +33,7 @@ presentation = html.Div(
 center = (4.5709, -74.2973)
 map = html.Div(
     className='content_element',
-    style={'grid-column': 'span 2', 'grid-row': 'span 2', 'flex-direction': 'column'},
+    style={'grid-column': '1 / span 7', 'grid-row': '1 / span 8', 'flex-direction': 'column'},
     children=[
         dl.Map(
             center=center,
@@ -61,7 +61,7 @@ esa experiencia fue fundamental para desarrollar las bases que sigo fortaleciend
 img_uni = 'assets/images/uni.png'
 university = html.Div(
     className='content_element',
-    style={'grid-column': ' span 2', 'grid-row': ' span 1', 'flex-direction': 'row'},
+    style={'grid-column': ' span 5', 'grid-row': ' span 5', 'flex-direction': 'row'},
     children=[
         html.Div(
             className='',
@@ -79,7 +79,7 @@ university = html.Div(
 
 img_dinosaur = 'assets/images/dinosaur.gif'
 dinosaurs = html.Div(
-    style={'grid-column': 'span 2', 'grid-row': 'span 2', 'flex-direction': 'column',},
+    style={'grid-column': 'span 6', 'grid-row': 'span 6', 'flex-direction': 'column',},
     className='content_element',
     children=[
     html.Img(src=img_dinosaur, className='img_content', style={'height': '80%'}),
@@ -122,35 +122,17 @@ En realidad, ambos me gustan, pero siento una atracción especial por los gatos.
 """
 cat = html.Div(
     className='content_element',
-    style={'grid-column': '  span 2', 'grid-row': '  span 1', 'display': 'flex', 'flex-direction': 'row'},
+    style={'grid-column': '  span 6', 'grid-row': '  span 4', 'display': 'flex', 'flex-direction': 'row'},
     children=[
         html.Img(src='assets/images/cat.png', className='img_content'),
         html.P(children=text)
     ]
 )
-programming = html.Div(
-    className='content_element',
-    style={'grid-row': '1 / span 2', 'grid-column': '5 / span 1'},
-    children=[
-        html.Video(
-            src='assets/images/matrix.mp4',
-            autoPlay=True,
-            loop=True,
-            controls=False,
-            muted=True,
-            className='img_content'
-        ),
-    ]
-)
 
-text = '''
-En la actualidad, generamos más información en un solo año que en toda la historia previa de la humanidad. 
-Cada segundo, millones de datos se producen a través de redes sociales, transacciones digitales, dispositivos conectados y servicios en línea. 
-Según estimaciones recientes, el mundo genera más de 300 exabytes de datos al día, y esta cifra sigue creciendo exponencialmente.
-'''
+
 data = html.Div(
     className='content_element',
-    style={'grid-row': '1 / span 1', 'grid-column': '3 / span 3'},
+    style={'grid-row': '1 / span 4', 'grid-column': '1 / span 8'},
     children=[
         html.Div(
             className='text_container_content',
@@ -158,88 +140,86 @@ data = html.Div(
             children=[
                 html.P(
                     children ="""
-                    En la actualidad, generamos más información en un solo año que en toda la historia previa de la humanidad.
+                    Nowadays, we generate more information in a single year than in all of previous human history.
                     """, 
                 ),
                 html.P(
                     children ="""
-                    Cada segundo, millones de datos se producen a través de redes sociales, transacciones digitales, dispositivos conectados y servicios en línea. 
+                    Every second, millions of data points are produced through social networks, digital transactions, connected devices, and online services.
                     """, 
                 ),
-                html.P([
-                    "Según estimaciones recientes, el mundo genera más de ",
-                    html.Span('300 exabytes '),
-                    'de datos al día, y esta cifra sigue creciendo exponencialmente.',
-                ]),
             ]
         ),
-        html.Img(src='assets/images/data.gif', className='img_content', style={'width': '45%'}),
+        html.Img(src='assets/images/data.gif', className='img_content', style={'width': '200px', 'height': '150px'}),
+    ]
+)
+
+data_9 = html.Div(
+    className='content_element',
+    style={'grid-row': '1 / span 4', 'grid-column': '9 / 4 span'},
+    children=[
+        html.P([
+            "According to recent estimates, the world generates more than  ",
+            html.Span('300 exabytes '),
+            'of data per day, and this figure continues to grow exponentially.',
+        ]),
     ]
 )
 
 data_2 = html.Div(
     className='content_element',
-    style={'flex-direction': 'column', 'grid-row': '2 / span 2', 'grid-column': '5 / span 1'},
+    style={
+        'flex-direction': 'column', 'grid-row': '1 / span 4', 'grid-column': '13 / span 6',
+        'position': 'relative', 'overflow': 'visible'
+        },
     children=[
+        html.Img(
+            src='assets/images/data_8.gif', 
+            className='img_content',
+            style={
+                'position': 'absolute', 'top': '-190px', 'height': '300px', 'width': '300px'
+            }
+        ),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column',},
             children=[
-                html.P(
+                html.P([ 
                     """
-                    Estos datos, sin embargo, no tienen valor por sí solos: 
-                    deben ser analizados, interpretados y transformados en conocimiento útil. 
-                    """, 
+                    However, data has no value in itself; it must be analyzed, interpreted, and 
+                    """,
+                    html.Span(' transformed into useful information.')
+                    ]
                 ),
-                html.P(
-                    """
-                    La ciencia de datos, la inteligencia artificial y el análisis estadístico se han convertido en herramientas fundamentales para comprender patrones,
-                    tomar decisiones informadas y crear innovaciones que impulsan el progreso en casi todos los campos del conocimiento.
-                    """
-                )
             ]
         ),
-    ]
-)
-
-data_3 = html.Div(
-    className='content_element',
-    style={'grid-row': '3 / span 1', 'grid-column': '4 / span 1', 'flex-direction': 'column'},
-    children=[
-        html.Img(src='assets/images/idea.gif', className='img_content')
     ]
 )
 
 data_4 = html.Div(
     className='content_element',
-    style={'grid-row': '3 / span 1', 'grid-column': '1 / span 3'},
+    style={'grid-row': '5 / span 4', 'grid-column': '1 / span 9'},
     children=[
-        html.Img(src='assets/images/data_2.gif', className='img_content'),
+        html.Img(src='assets/images/idea.gif', className='img_content'),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
             children=[
-                html.P(
+                html.P([
                     """
-                    Es sorprendente la capacidad que tienen los datos para responder preguntas: 
-                    nos permiten comprendernos a nosotros mismos y a la realidad que nos rodea con mayor precisión y, sobre esa base, 
-                    tomar decisiones verdaderamente informadas.
-                    """
-                ),
-                html.P(
-                    """
-                    Siempre que se apliquen procesos estadísticos adecuados, rigurosos y éticos.
-                    """
-                )
+                    It’s astonishing how powerful data can be in answering questions: 
+                    it allows us to understand ourselves and the reality around us with greater precision, and on that basis, 
+                    """,
+                    html.Span('make truly informed decisions.')
+                ]),
             ]
         ),
     ]
 )
 
-
 data_5 = html.Div(
     className='content_element',
-    style={'grid-row': '2 / span 1', 'grid-column': '3 / span 2'},
+    style={'grid-row': '5 / span 4', 'grid-column': '10 / span 9'},
     children=[
         html.Img(src='assets/images/data_5.gif', className='img_content',),
         html.Div(
@@ -248,31 +228,22 @@ data_5 = html.Div(
             children=[
                 html.P(
                     """
-                    La habilidad de programar nos permite transformar una idea en un proyecto tangible; 
-                    Cada línea de código es una pincelada que da vida a algo nuevo, funcional y creativo.
+                    The ability to program allows us to transform an idea into a tangible project; 
+                    each line of code is a brushstroke that brings something new, functional, and creative to life.
                     """
                 ),
-                html.Span('Es como convertir la lógica en arte.')
+                html.Span('It’s like turning logic into art.')
             ]
         )
     ]
 )
 
-data_6 = html.Div(
-    style={'grid-row': '3 / span 1', 'grid-column': '1 / span 1'},
-    className='content_element',
-    children=[
-        html.Img(
-            className='img_content',
-            src='assets/images/data_6.gif',
-        )
-    ],
-)
 
 data_7 = html.Div(
     className='content_element',
-    style={'grid-row': '4 / span 2', 'grid-column': '1 / span 1', 'flex-direction': 'column'},
+    style={'grid-row': 'span 8', 'grid-column': 'span 5', 'flex-direction': 'column'},
     children=[
+        html.Img(src='assets/images/data_6.gif', className='img_content', style={'width': '200px', 'height': '200px'}),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
@@ -281,16 +252,15 @@ data_7 = html.Div(
                     'He participado en distintos proyectos en equipo, aunque la mayoría los desarrollé por mi cuenta. ',
                     'Eso me permitió afianzar mis conocimientos y aprender de forma práctica.',
                 ]),
-                html.P('Me mantengo siempre en constante actualización y con ganas de seguir aprendiendo.')
+                html.Span('Me mantengo siempre en constante actualización y con ganas de seguir aprendiendo.')
             ]
         ),
-        html.Img(src='assets/images/data_6.gif', className='img_content')
     ]
 )
 
 data_8 = html.Div(
     className='content_element',
-    style={'grid-row': '4 / span 1', 'grid-column': '3 / span 3'},
+    style={'grid-row': '9 / span 3', 'grid-column': '1 / span 5', 'text-align': 'start', 'flex-direction': 'column'},
     children=[
         html.Div(
             className='text_container_content',
@@ -298,48 +268,47 @@ data_8 = html.Div(
             children=[
                 html.P([
                     """
-                    En la era digital, los datos, la estadística y la inteligencia artificial son activos estratégicos para cualquier empresa: 
-                    los datos revelan comportamientos y permiten medir resultados;
+                    In the digital era, data, statistics, and artificial intelligence are strategic assets for any company: 
+                    data reveal behaviors and allow results to be measured.
                     """,
                 ]),
-                html.P([
-                    """
-                    la estadística aporta métodos para interpretar esos datos, cuantificar la incertidumbre, 
-                    diseñar experimentos y validar hipótesis; 
-                    y la IA convierte el conocimiento en predicciones, automatizaciones y decisiones a escala.
-                    """
-                ]),
-                html.P([
-                    """
-                    Juntas, estas disciplinas mejoran la eficiencia operativa, permiten personalizar la experiencia del cliente, 
-                    optimizan recursos y ofrecen métricas precisas para evaluar el impacto de cada estrategia, transformando la información en una verdadera ventaja competitiva.
-                    """
-                ])
+            ],
+        ),
+    ]
+)
+
+data_10 = html.Div(
+    className='content_element',
+    style={'grid-row': '12 / span 5', 'grid-column': '1 / span 5', 'text-align': 'start'},
+    children=[
+        html.Div(
+            className='text_container_content',
+            children=[
+                html.Img(src='assets/images/data_7.gif', className='img_content')
             ]
         ),
     ]
 )
 
-
 # -------------------------------------------------------------------------------------------------------------------
 content = html.Div(
     id='container_content',
     children=[
-        map,
-        university, 
-        cat,
+        #map,
+        #university, 
+        #cat,
         #carl_sagan,
         #programming,
-        dinosaurs,
+        #dinosaurs,
         #black_hole,
         data,
         data_2,
-        data_3,
         data_4,
         data_5,
-        #data_6,
         data_7,
         data_8,
+        data_9,
+        data_10,
     ]
 )
 # -------------------------------------------------------------------------------------------------------------------
