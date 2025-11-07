@@ -1,68 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>3D Globe - Bogotá, Colombia</title>
+  <meta charset="utf-8" />
+  <title>Cesium — Zoom Bogotá → País (reinicia al hacer doble clic)</title>
+
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Widgets/widgets.css" rel="stylesheet"/>
+
   <style>
     html, body, #cesiumContainer {
-      width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .cesium-viewer-bottom,
+    .cesium-credit-textContainer,
+    .cesium-credit-logoContainer {
+      display: none !important;
     }
   </style>
 </head>
 <body>
   <div id="cesiumContainer"></div>
-  <script>
-    // 🔑 Token Cesium Ion
-    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNjM5ZjIzOC0xYzUxLTRlYjEtOWVhMi00NmQ1YzM3ZGM3ZDMiLCJpZCI6MzU3NzQ0LCJpYXQiOjE3NjI0MTk1NTJ9.7BeFiqfHBlR-2Oy8n2tjtpA2WKlDqU4NYy2-OOqP83A";
 
-    // ⚙️ Crear terreno usando la nueva API
-    Cesium.createWorldTerrainAsync().then((terrainProvider) => {
+  <script>
+    Cesium.Ion.defaultAccessToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNjM5ZjIzOC0xYzUxLTRlYjEtOWVhMi00NmQ1YzM3ZGM3ZDMiLCJpZCI6MzU3NzQ0LCJpYXQiOjE3NjI0MTk1NTJ9.7BeFiqfHBlR-2Oy8n2tjtpA2WKlDqU4NYy2-OOqP83A";
+
+    (async function main() {
       const viewer = new Cesium.Viewer("cesiumContainer", {
-        terrainProvider: terrainProvider,
         timeline: false,
         animation: false,
-        baseLayerPicker: true,
+        terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+        baseLayerPicker: false,
       });
 
-      // Centrar en Colombia
-      viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(-74.0721, 4.7110, 5000000)
-      });
+      // Mapa base sin nombres de ciudades
+      const imagery = await Cesium.IonImageryProvider.fromAssetId(2);
+      viewer.imageryLayers.addImageryProvider(imagery);
 
-      // Cargar fronteras de países
-      viewer.dataSources.add(
-        Cesium.GeoJsonDataSource.load(
-          "https://datahub.io/core/geo-countries/r/countries.geojson",
-          {
-            stroke: Cesium.Color.YELLOW,
-            fill: Cesium.Color.fromAlpha(Cesium.Color.DARKBLUE, 0.2),
-            strokeWidth: 1.5,
-            clampToGround: true,
-          }
-        )
-      );
+      const bogota = { lon: -74.0721, lat: 4.7110 };
+      const markerUrl = "/assets/images/marker.png"; // ruta de tu imagen
 
-      // Agregar marcador en Bogotá
-      const pinBuilder = new Cesium.PinBuilder();
-      viewer.entities.add({
-        name: "Bogotá, Colombia",
-        position: Cesium.Cartesian3.fromDegrees(-74.0721, 4.7110),
+      const marker = viewer.entities.add({
+        id: "marker-bogota",
+        position: Cesium.Cartesian3.fromDegrees(bogota.lon, bogota.lat, 0),
         billboard: {
-          image: pinBuilder.fromColor(Cesium.Color.RED, 48).toDataURL(),
-          verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+          image: markerUrl,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+          width: 36,
+          height: 48,
         },
-        label: {
-          text: "Bogotá",
-          font: "16px sans-serif",
-          fillColor: Cesium.Color.WHITE,
-          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-          outlineWidth: 2,
-          pixelOffset: new Cesium.Cartesian2(0, -40)
-        }
       });
-    });
+
+      // --- Cargar Colombia ---
+      const geojsonUrl = "https://datahub.io/core/geo-countries/r/countries.geojson";
+      let colombiaEntity = null;
+      let finalAltitude = 7000000;
+      try {
+        const ds = await Cesium.GeoJsonDataSource.load(geojsonUrl, {
+          clampToGround: true,
+          stroke: Cesium.Color.WHITE,
+          fill: Cesium.Color.TRANSPARENT,
+          strokeWidth: 1.0,
+        });
+        viewer.dataSources.add(ds);
+        for (const e of ds.entities.values) {
+          const name = e.properties?.ADMIN?.getValue() || e.properties?.NAME?.getValue();
+          if (name && String(name).toLowerCase().includes("colombia")) {
+            colombiaEntity = e;
+            const positions = e.polygon.hierarchy.getValue().positions;
+            const bs = Cesium.BoundingSphere.fromPoints(positions);
+            finalAltitude = Math.max(bs.radius * 2.2, 150000);
+            break;
+          }
+        }
+      } catch (e) {
+        console.error("Error cargando GeoJSON:", e);
+      }
+
+      // --- Función de animación completa ---
+      async function runZoomAnimation() {
+        try {
+          viewer.camera.cancelFlight();
+
+          // Comienza con zoom máximo sobre Bogotá (muy cerca)
+          viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(bogota.lon, bogota.lat, 30),
+            orientation: {
+              heading: 0,
+              pitch: Cesium.Math.toRadians(-90),
+              roll: 0,
+            },
+          });
+
+          await new Promise((r) => setTimeout(r, 300));
+
+          // Luego se aleja progresivamente hasta mostrar el país
+          await viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(bogota.lon, bogota.lat, finalAltitude),
+            duration: 10,
+            easingFunction: Cesium.EasingFunction.QUADRATIC_IN_OUT,
+            orientation: {
+              heading: 0,
+              pitch: Cesium.Math.toRadians(-90),
+              roll: 0,
+            },
+          });
+
+          // Ajuste final para centrar Colombia
+          if (colombiaEntity) await viewer.zoomTo(colombiaEntity);
+        } catch (e) {
+          console.error("Error en animación:", e);
+        }
+      }
+
+      // --- Animación inicial al cargar ---
+      runZoomAnimation();
+
+      // --- Reiniciar animación al hacer doble clic en el mapa ---
+      const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+      handler.setInputAction(() => {
+        runZoomAnimation(); // 🔁 reinicia desde el principio
+      }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+    })();
   </script>
 </body>
 </html>

@@ -33,7 +33,7 @@ presentation = html.Div(
 center = (4.5709, -74.2973)
 map = html.Div(
     className='content_element',
-    style={'grid-column': '11 / span 7', 'grid-row': '9 / span 8', 'flex-direction': 'column'},
+    style={'grid-column': ' span 7', 'grid-row': 'span 8', 'flex-direction': 'column'},
     children=[
         dl.Map(
             center=center,
@@ -55,12 +55,12 @@ map = html.Div(
 
 map_2 = html.Div(
     className='content_element',
-    style={'grid-row': 'span 7', 'grid-column': 'span 7'},
+    style={'grid-row': '9 / span 8', 'grid-column': '11 / span 8'},
     children=[
         html.Iframe(
-        src="/assets/cesium_map.html",
-        className='img_content'
-    )
+            src="/assets/cesium_map.html",
+            className='img_content'
+        )
     ]
 )
 # -------------------------------------------------------------------------------------------------------------------
@@ -306,7 +306,6 @@ data_10 = html.Div(
 content = html.Div(
     id='container_content',
     children=[
-        map,
         map_2,
         university, 
         #cat,
