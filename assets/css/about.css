@@ -14,13 +14,14 @@
   align-items: center;
   justify-items: center;
   width: 900px;
-  margin-bottom: 80px;
+  margin-top: 40px;
+  margin-bottom: 90px;
 }
 
 #presentation_text{
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 }
 #title_presentation{
   font-size: 40px;
@@ -36,23 +37,29 @@
     transform: translateY(-15px);
   }
 }
-#body_presentation{
+.body_presentation{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   font-size: 18px
 }
 #img_profile{
   height: 400px;
-  border-radius: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.067);
+  background: rgba(0, 0, 255, 0.016);
+  border-radius: 100px;
+  /* Difuminar la parte inferior */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 /*---------------------------------------------------------------------------------------------*/
 #container_content{
   display: grid;
   grid-template-columns: repeat(18, 50px);
-  grid-template-rows: repeat(22, 50px);
+  grid-template-rows: repeat(28, 50px);
   gap: 10px;
-  width: 100%;
-  font-size: 16px;
+  width: 1100px;
+  font-size: 14px;
 }
 .content_element{
   padding: 15px;
@@ -81,3 +88,32 @@ span{
   font-size: 19px;
 }
 
+/*---------------------------------------------------------------------------------------------*/
+:root{
+  --ship-duration: 8s;
+  --ship-offset: 200px; /* ancho extra para que salga completamente fuera */
+}
+
+/* Contenedor: respeta el flujo del documento */
+.spaceship_container {
+  position: relative;    /* importante: coordenadas absolutas de .spaceship son relativas a este contenedor */
+  width: 100vw;           /* ocupa el ancho del contenedor padre */
+  height: 160px;         /* ajusta según tu GIF */
+  overflow: hidden;
+}
+
+/* Imagen de la nave (se posiciona y anima dentro del contenedor) */
+.spaceship {
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--ship-offset));
+  transform: translateY(-50%);
+  height: 100%;
+  animation: fly-left-to-right var(--ship-duration) linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fly-left-to-right {
+  0%   { left: calc(-1 * var(--ship-offset)); }
+  100% { left: calc(100% + var(--ship-offset)); } /* 100% relativo al ancho del contenedor */
+}

@@ -5,14 +5,6 @@ register_page(__name__, path='/')
 
 # -------------------------------------------------------------------------------------------------------------------
 
-title = "Hello. I'm Cristian"
-text = '''
-I am a self-taught enthusiast with a strong academic foundation in statistics, programming, and artificial intelligence. 
-I continuously update that foundation through targeted courses and hands-on practice. 
-Responsible, punctual, and highly committed, I deliver data-driven analysis and well-structured, production-ready code. 
-I’m results-oriented, detail-focused, and always eager to learn new tools. 
-I’m looking for opportunities to contribute rigorous analysis, scalable solutions, and measurable impact to challenging projects.
-'''
 
 presentation = html.Div(
     id='container_presentation',
@@ -20,8 +12,15 @@ presentation = html.Div(
         html.Div(
             id='presentation_text',
             children=[
-                html.P(children=title, id='title_presentation'),
-                html.P(children=text, id='body_presentation'),
+                html.P(children="Hello! My name is Cristian.", id='title_presentation'),
+                html.Div(
+                    className='body_presentation',
+                    children=[
+                        html.P("I am a data analysis professional with a background in statistics and hands-on experience in Python. I design and develop interactive dashboards using Dash, automate repetitive tasks with Selenium, and perform web scraping to collect relevant data.",),
+                        html.P("From this information, I carry out rigorous analyses in Python to transform raw data into actionable insights that support decision-making. In addition, I apply machine learning techniques to develop predictive and classification models, validate their performance, and uncover patterns that enhance automated solutions."),
+                        html.P("I am constantly updating my skills and enjoy tackling real-world problems with evidence-based solutions.")
+                    ]
+                )
             ]
         ),
         html.Img( src='assets/images/profile.png', id='img_profile'),
@@ -55,56 +54,54 @@ map = html.Div(
 
 map_2 = html.Div(
     className='content_element',
-    style={'grid-row': '9 / span 8', 'grid-column': '11 / span 8'},
+    style={'grid-row': '9 / span 10', 'grid-column': '11 / span 8', 'flex-direction': 'column'},
     children=[
         html.Iframe(
             src="/assets/cesium_map.html",
-            className='img_content'
-        )
+            className='img_content', style={'border': 'none'}
+        ),
+        html.P(
+            [
+                'I’m from Colombia — an extraordinary country filled with stunning landscapes and natural wonders that inspire admiration.'
+            ],
+            
+        ),
+        html.Span('(Double-click on the map)')
     ]
 )
 # -------------------------------------------------------------------------------------------------------------------
 
-texto = '''
-Aunque no pude continuar mis estudios por motivos de tiempo y recursos económicos, 
-esa experiencia fue fundamental para desarrollar las bases que sigo fortaleciendo de manera autodidacta.
-'''
-img_uni = 'assets/images/uni.png'
 university = html.Div(
     className='content_element',
-    style={'grid-column': ' span 6', 'grid-row': ' span 3', 'flex-direction': 'row'},
+    style={'grid-column': '6 / span 5', 'grid-row': '23 / span 5', 'flex-direction': 'row'},
     children=[
         html.Div(
             className='',
             children=[
-                html.P(
-                    """
-                    Estudié seis semestres en la Universidad del Valle, donde adquirí una sólida base académica en mi campo.
-                    """
-                )
+                html.P('I studied six semesters of Statistics at the Universidad del Valle, where I acquired a solid academic foundation in my field.')
             ]
         ),
-        html.Img(src=img_uni, className='img_content')
+        html.Img(src='assets/images/uni.png', className='img_content', style={'width': '140px', 'height': '220px'})
     ]
 )
 
-img_dinosaur = 'assets/images/dinosaur.gif'
 dinosaurs = html.Div(
-    style={'grid-column': 'span 6', 'grid-row': 'span 6', 'flex-direction': 'column',},
+    style={'grid-column': '11 / span 7', 'grid-row': '19 / span 8', 'flex-direction': 'column',},
     className='content_element',
     children=[
-    html.Img(src=img_dinosaur, className='img_content', style={'height': '80%'}),
-    html.P(
-        'Los humanos modernos hemos estado en la Tierra durante aproximadamente el 0.18% del tiempo que existieron los dinosaurios.',
-        className='text_content',
-    )
+        html.Img(src='assets/images/dinosaur.gif', className='img_content', style={'height': '350px'}),
+        html.P([
+            'Modern humans have been on Earth for ',
+            html.Span('approximately 0.18% of the time '),
+            'that the dinosaurs existed.'
+        ])
     ]
 )
 
 img_carl_sagan = 'assets/images/carl_sagan.jpg'
 carl_sagan = html.Div(
     className='content_element',
-    style={'grid-column': '5', 'grid-row': '3 / span 2', 'flex-direction': 'column'},
+    style={'grid-column': '7 / span 4', 'grid-row': '17 / span 7', 'flex-direction': 'column'},
     children=[
         html.Img(src=img_carl_sagan, className='img_content'),
         html.P(children='Carl Sagan fue una figura clave en mi infancia, pues gracias a él descubrí mi interés por la ciencia y el conocimiento.')
@@ -113,33 +110,25 @@ carl_sagan = html.Div(
 
 black_hole = html.Div(
     className='content_element',
-    #style={'grid-column': '3 / span 2', 'grid-row': '2 / span 2', 'flex-direction': 'column'},
+    style={'grid-column': '2 / span 9', 'grid-row': '17 / span 6', 'flex-direction': 'column'},
     children=[
         html.Img(
             src='assets/images/black_hole.gif',
             className='img_content',
         ),
-        html.P(
-            children='''“Somos el modo que tiene el cosmos de conocerse a sí mismo.”'''
-        ),
-        html.P('“La imaginación a menudo nos lleva a mundos que nunca existieron, pero sin ella no vamos a ninguna parte.”'),
-        html.P('- Carl Sagan')
+        html.P(children='“We are a way for the cosmos to know itself.”',),
+        html.P('- Carl Sagan', )
     ]
 )
 
-text = """
-Me gustan los gatos, aunque eso no significa que no me agraden los perros. 
-En realidad, ambos me gustan, pero siento una atracción especial por los gatos.
-"""
 cat = html.Div(
     className='content_element',
-    style={'grid-column': '  span 6', 'grid-row': '  span 4', 'display': 'flex', 'flex-direction': 'row'},
+    style={'grid-column': '1 / span 5', 'grid-row': '23 / span 5', 'display': 'flex', 'flex-direction': 'row'},
     children=[
-        html.Img(src='assets/images/cat.png', className='img_content'),
-        html.P(children=text)
+        html.Img(src='assets/images/cat.png', className='img_content', style={'width': '150px', 'height': '240px'}),
+        html.P(children='I like both cats and dogs, although I feel a special attraction to cats.')
     ]
 )
-
 
 data = html.Div(
     className='content_element',
@@ -308,10 +297,10 @@ content = html.Div(
     children=[
         map_2,
         university, 
-        #cat,
+        cat,
         #carl_sagan,
-        #dinosaurs,
-        #black_hole,
+        dinosaurs,
+        black_hole,
         data,
         data_2,
         data_4,
@@ -323,6 +312,15 @@ content = html.Div(
     ]
 )
 # -------------------------------------------------------------------------------------------------------------------
+spaceship = html.Div(
+    className='spaceship_container',
+    children=[
+        html.Img(src='assets/images/spaceship.gif', className='spaceship')
+    ]
+)
+
+
+# -------------------------------------------------------------------------------------------------------------------
 
 layout = html.Div(
     id='container_about',
@@ -330,5 +328,6 @@ layout = html.Div(
         html.Link(rel='stylesheet', href='assets/css/about.css'),
         presentation,
         content,
+        spaceship,
     ]
 )
