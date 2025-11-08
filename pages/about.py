@@ -23,7 +23,7 @@ presentation = html.Div(
                 )
             ]
         ),
-        html.Img( src='assets/images/profile.png', id='img_profile'),
+        html.Img( src='assets/images/about/profile.png', id='img_profile'),
     ]
 )
 
@@ -81,7 +81,7 @@ university = html.Div(
                 html.P('I studied six semesters of Statistics at the Universidad del Valle, where I acquired a solid academic foundation in my field.')
             ]
         ),
-        html.Img(src='assets/images/uni.png', className='img_content', style={'width': '140px', 'height': '220px'})
+        html.Img(src='assets/images/about/uni.png', className='img_content', style={'width': '140px', 'height': '220px'})
     ]
 )
 
@@ -89,7 +89,7 @@ dinosaurs = html.Div(
     style={'grid-column': '11 / span 7', 'grid-row': '19 / span 8', 'flex-direction': 'column',},
     className='content_element',
     children=[
-        html.Img(src='assets/images/dinosaur.gif', className='img_content', style={'height': '350px'}),
+        html.Img(src='assets/images/about/dinosaur.gif', className='img_content', style={'height': '350px'}),
         html.P([
             'Modern humans have been on Earth for ',
             html.Span('approximately 0.18% of the time '),
@@ -98,7 +98,7 @@ dinosaurs = html.Div(
     ]
 )
 
-img_carl_sagan = 'assets/images/carl_sagan.jpg'
+img_carl_sagan = 'assets/images/about/carl_sagan.jpg'
 carl_sagan = html.Div(
     className='content_element',
     style={'grid-column': '7 / span 4', 'grid-row': '17 / span 7', 'flex-direction': 'column'},
@@ -113,7 +113,7 @@ black_hole = html.Div(
     style={'grid-column': '2 / span 9', 'grid-row': '17 / span 6', 'flex-direction': 'column'},
     children=[
         html.Img(
-            src='assets/images/black_hole.gif',
+            src='assets/images/about/black_hole.gif',
             className='img_content',
         ),
         html.P(children='“We are a way for the cosmos to know itself.”',),
@@ -125,7 +125,7 @@ cat = html.Div(
     className='content_element',
     style={'grid-column': '1 / span 5', 'grid-row': '23 / span 5', 'display': 'flex', 'flex-direction': 'row'},
     children=[
-        html.Img(src='assets/images/cat.png', className='img_content', style={'width': '150px', 'height': '240px'}),
+        html.Img(src='assets/images/about/cat.png', className='img_content', style={'width': '150px', 'height': '240px'}),
         html.P(children='I like both cats and dogs, although I feel a special attraction to cats.')
     ]
 )
@@ -150,7 +150,7 @@ data = html.Div(
                 ),
             ]
         ),
-        html.Img(src='assets/images/data.gif', className='img_content', style={'width': '200px', 'height': '150px'}),
+        html.Img(src='assets/images/about/data.gif', className='img_content', style={'width': '200px', 'height': '150px'}),
     ]
 )
 
@@ -174,7 +174,7 @@ data_2 = html.Div(
         },
     children=[
         html.Img(
-            src='assets/images/data_8.gif', 
+            src='assets/images/about/data_8.gif', 
             className='img_content',
             style={
                 'position': 'absolute', 'top': '-190px', 'height': '300px', 'width': '300px'
@@ -200,7 +200,7 @@ data_4 = html.Div(
     className='content_element',
     style={'grid-row': '5 / span 4', 'grid-column': '1 / span 9'},
     children=[
-        html.Img(src='assets/images/idea.gif', className='img_content'),
+        html.Img(src='assets/images/about/idea.gif', className='img_content'),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
@@ -221,7 +221,7 @@ data_5 = html.Div(
     className='content_element',
     style={'grid-row': '5 / span 4', 'grid-column': '10 / span 9'},
     children=[
-        html.Img(src='assets/images/data_5.gif', className='img_content',),
+        html.Img(src='assets/images/about/data_5.gif', className='img_content',),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
@@ -243,7 +243,7 @@ data_7 = html.Div(
     className='content_element',
     style={'grid-row': '9 / span 8', 'grid-column': '6 / span 5', 'flex-direction': 'column'},
     children=[
-        html.Img(src='assets/images/data_6.gif', className='img_content', style={'width': '200px', 'height': '200px'}),
+        html.Img(src='assets/images/about/data_6.gif', className='img_content', style={'width': '200px', 'height': '200px'}),
         html.Div(
             className='text_container_content',
             style={'flex-direction': 'column'},
@@ -285,7 +285,7 @@ data_10 = html.Div(
         html.Div(
             className='text_container_content',
             children=[
-                html.Img(src='assets/images/data_7.gif', className='img_content')
+                html.Img(src='assets/images/about/data_7.gif', className='img_content')
             ]
         ),
     ]
@@ -315,7 +315,7 @@ content = html.Div(
 spaceship = html.Div(
     className='spaceship_container',
     children=[
-        html.Img(src='assets/images/spaceship.gif', className='spaceship')
+        html.Img(src='assets/images/about/spaceship.gif', className='spaceship')
     ]
 )
 
