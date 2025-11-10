@@ -28,7 +28,7 @@ theme = html.Div(
         html.Button(
             id='btn_theme',
             children=html.Img(
-                src='/assets/images/sun.png',
+                src='/assets/images/about/sun.png',
                 id='img_theme',
             )
         ),
@@ -51,8 +51,8 @@ def update_theme(btn_theme, src_theme):
     if not btn_theme:
         return no_update
     
-    img_sun = '/assets/images/sun.png'
-    img_moon = '/assets/images/moon.png'
+    img_sun = '/assets/images/about/sun.png'
+    img_moon = '/assets/images/about/moon.png'
     
     if src_theme == img_sun:
         img = img_moon

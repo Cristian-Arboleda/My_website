@@ -1,32 +1,98 @@
-from dash import register_page, html
+from dash import register_page, html, dcc, callback, Input, Output, State, no_update, ctx
 
 register_page(__name__)
 
-data = [
+project_data = [
     {
         'title': 'twitch_notificacion_bot', 
         'description': 'A Discord bot developed in Python whose purpose is to automatically notify when a Twitch channel goes live.', 
         'url': 'https://github.com/Cristian-Arboleda/bot_biscuittp_twitch_avisos', 
-        'image': 'twitch_notificacion_bot',
+        'img': 'twitch_notificacion_bot',
         'tools': ['python']
     },
     {
         'title': 'link_in_bio_biscuittp',
         'description': 'A page that displays a brief description about me and gathers all the links to my personal social media profiles.',
         'url': 'https://biscuittp-stream.onrender.com',
-        'image': 'link_in_bio_biscuittp',
+        'img': 'link_in_bio_biscuittp',
         'tools': ['python', 'css', 'html', 'dash']
     },
     {
         'title': 'welcome_bot_for_discord',
-        'description': 'A Discord bot that welcomes new server members by mentioning their name and displaying a personalized image.',
+        'description': 'A Discord bot that welcomes new server members by mentioning their name and displaying a personalized img.',
         'url': 'https://github.com/Cristian-Arboleda/bot-bienvenida',
+        'img': 'welcome_bot_for_discord',
         'tools': ['python']
     },
     {
-        
+        'title': 'Weight_Progress',
+        'description': 'Interactive dashboard that records and visualizes daily weight progress in a database.',
+        'url': '',
+        'img': '',
+        'tools': ['python', 'html', 'css', 'postgresql'],
+    },
+    {
+        'title': 'link_in_bio_cristian',
+        'description': 'Interactive dashboard that records and visualizes daily weight progress in a database.',
+        'url': 'https://cristianarboleda.onrender.com',
+        'img': 'link_in_bio_cristian',
+        'tools': ['python', 'css', 'html', 'dash', 'postgresql'],
     }
 ]
 
+def project(index=0):
+    return html.A(
+        href=project_data[index]['url'],
+        id='project_data_element',
+        target='_blank',
+        children=[
+            html.P(project_data[index]['title'].replace('_', ' ').title()),
+            html.Img(
+                src='assets/images/project/' + project_data[index]['img'] + '.png',
+                className='project_img',
+            ),
+            html.P(project_data[index]['description'])
+        ],
+    )
 
-layout = html.Div()
+layout = html.Div(
+    id='project_container',
+    children=[
+        html.Div(
+            id='carousel_container',
+            children=[
+                html.Button('⟨', id='prev_btn', className='btn_carousel'),
+                html.Div(id='project_data_container', children=project()),
+                html.Button('⟩', id='next_btn', className='btn_carousel'),
+                dcc.Store(id='current_index', data=0)
+            ]
+        ),
+    ]
+)
+
+@callback(
+    Output('current_index', 'data'),
+    Output('project_data_container', 'children'),
+    Input('next_btn', 'n_clicks'),
+    Input('prev_btn', 'n_clicks'),
+    Input('current_index', 'data'),
+    prevent_initial_call=True,
+)
+def update_carousel(next_btn, prev_btn, current_index):
+    
+    trigger = ctx.triggered_id
+    total_projects = len(project_data) - 1
+    print('total_projects', total_projects)
+    
+    if trigger == 'next_btn':
+        current_index += 1
+        if current_index > total_projects:
+            current_index = 0
+    
+    elif trigger == 'prev_btn':
+        current_index -= 1
+        if current_index < -(total_projects + 1):
+            current_index = 1
+    
+    print(current_index)
+    return current_index, project(current_index)
