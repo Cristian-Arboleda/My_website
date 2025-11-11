@@ -1,6 +1,6 @@
 #project_container{
     text-decoration: none;
-    margin-top: 50px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -10,41 +10,71 @@
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 
-.carousel_project_container{
+.project_carousel_container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-.carousel_project_element{
+.project_carousel_element{
     text-decoration: none;
     color: white;
     background: hsl(211.3deg 30.67% 14.71%);
     margin: auto;
     display: grid;
-    grid-template-rows: 30px 400px 40px 50px;
+    grid-template-rows: 30px 400px 40px 60px;
     justify-items: center;
     align-items: center;
-    width: 800px;
+    width: 900px;
     border-radius: 5px;
     padding: 20px;
     gap: 10px;
     text-align: center;
 }
-
-.carousel_project_img{
+.carousel_title{
+    font-size: 25px;
+    font-weight: bold;
+}
+.project_carousel_img{
     width: 100%;
     height: 100%;
     border-radius: 5px;
 }
 
-.btn_carousel{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
+.carousel_description{
+    font-size: 16px;
+}
+.carousel_tools{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+.carousel_tool_img{
+    height: 100%;
+}
+
+.carousel_btn_container{
+    display: flex;
+    gap: 5px;
+}
+.carousel_btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     background: white;
     color: black;
-    font-size: 30px
+    font-size: 25px;
+    cursor: pointer;
+    border: none
+}
+.carousel_btn:hover{
+    background: rgb(70, 48, 112);
+    color: white;
+    box-shadow: 0px 0px 5px 1px yellow;
 }
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
@@ -52,28 +82,55 @@
 #project_grid_container{
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 0px;
     justify-content: center;
     width: 1500px;
 }
 
 .project_grid_element{
-    background: white;
-    color: black;
+    background: hsl(211.3deg 30.67% 14.71%);
+    color: white;
     display: grid;
-    grid-template-rows: 30px 200px 100px 30px;
+    grid-template-rows: 30px 200px 80px 30px;
     width: 400px;
     align-items: center;
     justify-items: center;
     text-align: center;
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
     gap: 5px;
+    text-decoration: none;
+    margin: 5px;
 }
 
+.project_grid_element:hover{
+    box-shadow: inset 0px 0px 5px 0px rgb(70, 67, 248);
+    margin: 0px;
+    grid-template-rows: 30px 210px 80px 30px;
+    width: 410px;
+}
+
+.project_grid_title{
+    font-size: 18px;
+    font-weight: bold;
+}
 .project_grid_img{
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    
+}
+.project_grid_description{
+    font-size: 14px;
+}
+.project_grid_tools_container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.project_grid_tool_img{
+    height: 100%;
 }

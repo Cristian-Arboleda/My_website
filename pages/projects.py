@@ -3,6 +3,8 @@ from dash import register_page, html, dcc, callback, Input, Output, State, no_up
 register_page(__name__)
 
 url_img = 'assets/images/project/'
+url_tools = 'assets/images/tools/'
+
 project_data = [
     {
         'title': 'twitch_notificacion_bot', 
@@ -41,10 +43,11 @@ project_data = [
     }
 ]
 
+# ----------------------------------------------------------------------------------------------------------------------------------
 def create_project(index=0):
     return html.A(
         href=project_data[index]['url'],
-        className='carousel_project_element',
+        className='project_carousel_element',
         target='_blank',
         children=[
             html.P(
@@ -53,21 +56,53 @@ def create_project(index=0):
             ),
             html.Img(
                 src=url_img + project_data[index]['img'] + '.png',
-                className='carousel_project_img',
+                className='project_carousel_img',
             ),
-            html.P(project_data[index]['description'])
+            html.P(
+                project_data[index]['description'],
+                className='carousel_description'
+            ),
+            html.Div(
+                className='carousel_tools',
+                children=[
+                    html.Img(
+                        src=url_tools + tool + '.png',
+                        className='carousel_tool_img'
+                    )
+                    for tool in project_data[index]['tools']
+                ]
+            )
         ],
     )
+
+project_carousel = html.Div(
+    className='project_carousel_container',
+    children=[
+        html.Div(id='project_carousel_container', children=create_project()),
+        dcc.Store(id='current_index', data=0),
+        html.Div(
+            className='carousel_btn_container',
+            children=[
+                html.Button('⟨', id='prev_btn', className='carousel_btn'),
+                html.Button('⟩', id='next_btn', className='carousel_btn'),
+            ]
+        )
+    ]
+)
+
+# ----------------------------------------------------------------------------------------------------------------------------------
 
 project_grid = html.Div(
     id='project_grid_container',
     children=[
         html.A(
+            href=project['url'],
             className='project_grid_element',
             children=[
                 html.P(
-                    project['title'],
-                    style={'grid-row': '1'}
+                    project['title'].replace('_', ' ').title(),
+                    style={'grid-row': '1'},
+                    className='project_grid_title'
                 ),
                 html.Img(
                     src = url_img + project['img'] + '.png',
@@ -76,37 +111,39 @@ project_grid = html.Div(
                 ),
                 html.P(
                     project['description'],
-                    style={'grid-row': '3'}
+                    style={'grid-row': '3'},
+                    className='project_grid_description'
                 ),
-                html.P(
-                    'tools',
-                    style={'grid-row': '4'}
-                )
+                html.Div(
+                    className='project_grid_tools_container',
+                    style={'grid-row': '4'},
+                    children=[
+                        html.Img(
+                            src=url_tools + tool + '.png',
+                            className='project_grid_tool_img'
+                        )
+                        for tool in project['tools']
+                    ]
+                ),
             ]
         )
         for project in project_data
     ]
 )
 
+# ----------------------------------------------------------------------------------------------------------------------------------
 layout = html.Div(
     id='project_container',
     children=[
-        html.Div(
-            className='carousel_project_container',
-            children=[
-                html.Button('⟨', id='prev_btn', className='btn_carousel'),
-                html.Div(id='carousel_project_container', children=create_project()),
-                html.Button('⟩', id='next_btn', className='btn_carousel'),
-                dcc.Store(id='current_index', data=0)
-            ]
-        ),
+        project_carousel,
+        html.Hr(style={'color': 'white', 'width': '100%'}),
         project_grid,
     ]
 )
 
 @callback(
     Output('current_index', 'data'),
-    Output('carousel_project_container', 'children'),
+    Output('project_carousel_container', 'children'),
     Input('next_btn', 'n_clicks'),
     Input('prev_btn', 'n_clicks'),
     Input('current_index', 'data'),
