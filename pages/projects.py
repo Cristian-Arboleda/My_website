@@ -7,39 +7,60 @@ url_tools = 'assets/images/tools/'
 
 project_data = [
     {
+        'title': 'Evolution of the Minimum Wage Over Time', 
+        'description': 'Explore how the minimum wage has changed in each country around the world over time, with values expressed in local currency and in US dollars to facilitate global comparison.', 
+        'url': 'https://data-in-time.onrender.com/', 
+        'img': 'Evolution_of_the_Minimum_Wage_Over_Time.gif',
+        'tools': ['python', 'git', 'dash', 'postgresql']
+    },
+    {
+        'title': 'weight_progress',
+        'description': 'Interactive dashboard that allows users to record and visualize their daily weight progress, with login access and data storage in a database. \n user: cristian \n pass: 123',
+        'url': 'https://progreso-peso-fxck.onrender.com/',
+        'img': 'weight_progres.png',
+        'tools': ['python', 'html', 'css', 'postgresql', 'dash', 'git'],
+    },
+    {
         'title': 'twitch_notificacion_bot', 
         'description': 'A Discord bot developed in Python whose purpose is to automatically notify when a Twitch channel goes live.', 
         'url': 'https://github.com/Cristian-Arboleda/bot_biscuittp_twitch_avisos', 
-        'img': 'twitch_notificacion_bot',
-        'tools': ['python']
+        'img': 'twitch_notificacion_bot.png',
+        'tools': ['python', 'git']
     },
     {
         'title': 'link_in_bio_biscuittp',
-        'description': 'A page that displays a brief description about me and gathers all the links to my personal social media profiles.',
+        'description': 'A single webpage that gathers all the streamer’s links in one place.',
         'url': 'https://biscuittp-stream.onrender.com',
-        'img': 'link_in_bio_biscuittp',
-        'tools': ['python', 'css', 'html', 'dash']
+        'img': 'link_in_bio_biscuittp.png',
+        'tools': ['python', 'css', 'html', 'dash', 'git']
     },
     {
         'title': 'welcome_bot_for_discord',
         'description': 'A Discord bot that welcomes new server members by mentioning their name and displaying a personalized img.',
         'url': 'https://github.com/Cristian-Arboleda/bot-bienvenida',
-        'img': 'welcome_bot_for_discord',
-        'tools': ['python']
+        'img': 'welcome_bot_for_discord.png',
+        'tools': ['python', 'git']
     },
     {
-        'title': 'Weight_Progress',
-        'description': 'Interactive dashboard that records and visualizes daily weight progress in a database.',
-        'url': '',
-        'img': '',
-        'tools': ['python', 'html', 'css', 'postgresql'],
+        'title': 'Automate Facebook login',
+        'description': 'A bot developed with Selenium and Python that automatically logs into Facebook and simulates human typing through the keyboard.',
+        'url': 'https://github.com/Cristian-Arboleda/Automatizar-login-en-Facebook-con-Selenium-y-python',
+        'img': 'Automate_Facebook_login_with_Selenium_and_Python.png',
+        'tools': ['python', 'selenium', 'html', 'git'],
     },
     {
         'title': 'link_in_bio_cristian',
         'description': 'Interactive dashboard that records and visualizes daily weight progress in a database.',
         'url': 'https://cristianarboleda.onrender.com',
-        'img': 'link_in_bio_cristian',
+        'img': 'link_in_bio_cristian.png',
         'tools': ['python', 'css', 'html', 'dash', 'postgresql'],
+    },
+    {
+        'title': 'basic calculator',
+        'description': 'A basic calculator developed during my initial learning of web development fundamentals.',
+        'url': 'https://cristian-arboleda.github.io/calculator/',
+        'img': 'basic_calculator.png',
+        'tools': ['html', 'css', 'js', 'git'],
     }
 ]
 
@@ -55,7 +76,7 @@ def create_project(index=0):
                 className='carousel_title',
             ),
             html.Img(
-                src=url_img + project_data[index]['img'] + '.png',
+                src=url_img + project_data[index]['img'],
                 className='project_carousel_img',
             ),
             html.P(
@@ -98,6 +119,7 @@ project_grid = html.Div(
         html.A(
             href=project['url'],
             className='project_grid_element',
+            target='_blank',
             children=[
                 html.P(
                     project['title'].replace('_', ' ').title(),
@@ -105,18 +127,17 @@ project_grid = html.Div(
                     className='project_grid_title'
                 ),
                 html.Img(
-                    src = url_img + project['img'] + '.png',
+                    src = url_img + project['img'],
                     className='project_grid_img',
                     style={'grid-row': '2'}
                 ),
-                html.P(
-                    project['description'],
-                    style={'grid-row': '3'},
-                    className='project_grid_description'
-                ),
+                #html.P(
+                    #project['description'],
+                    #className='project_grid_description'
+                #),
                 html.Div(
                     className='project_grid_tools_container',
-                    style={'grid-row': '4'},
+                    style={'grid-row': '3'},
                     children=[
                         html.Img(
                             src=url_tools + tool + '.png',
@@ -153,7 +174,6 @@ def update_carousel(next_btn, prev_btn, current_index):
     
     trigger = ctx.triggered_id
     total_projects = len(project_data)
-    print('total_projects', total_projects)
     
     if trigger == 'next_btn':
         current_index += 1
@@ -165,5 +185,4 @@ def update_carousel(next_btn, prev_btn, current_index):
         if current_index < -total_projects:
             current_index = -1
     
-    print(current_index)
     return current_index, create_project(current_index)

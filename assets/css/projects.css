@@ -22,7 +22,7 @@
     background: hsl(211.3deg 30.67% 14.71%);
     margin: auto;
     display: grid;
-    grid-template-rows: 30px 400px 40px 60px;
+    grid-template-rows: 30px 400px 60px 40px;
     justify-items: center;
     align-items: center;
     width: 900px;
@@ -43,6 +43,11 @@
 
 .carousel_description{
     font-size: 16px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-line;
 }
 .carousel_tools{
     display: flex;
@@ -91,22 +96,24 @@
     background: hsl(211.3deg 30.67% 14.71%);
     color: white;
     display: grid;
-    grid-template-rows: 30px 200px 80px 30px;
+    grid-template-rows: 30px 200px 20px;
     width: 400px;
     align-items: center;
     justify-items: center;
     text-align: center;
     border-radius: 5px;
     padding: 15px;
-    gap: 5px;
+    gap: 10px;
     text-decoration: none;
     margin: 5px;
+    place-items: center;
+    align-self: center;
 }
 
 .project_grid_element:hover{
     box-shadow: inset 0px 0px 5px 0px rgb(70, 67, 248);
     margin: 0px;
-    grid-template-rows: 30px 210px 80px 30px;
+    grid-template-rows: 30px 210px 20px;
     width: 410px;
 }
 
@@ -120,7 +127,12 @@
     border-radius: 5px;
 }
 .project_grid_description{
-    font-size: 14px;
+    font-size: 13px;
+    white-space: pre-line;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden
 }
 .project_grid_tools_container{
     display: flex;
@@ -133,4 +145,32 @@
 
 .project_grid_tool_img{
     height: 100%;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+
+/* 🎚️ Scrollbar moderno y minimalista */
+::-webkit-scrollbar {
+  height: 6px;                 /* grosor del scroll horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f519;         /* color del fondo de la pista */
+  border-radius: 10px;         /* bordes suaves */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(173, 171, 171, 0.447); /* color con degradado sutil */
+  border-radius: 10px;         /* bordes redondeados */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(245, 218, 218); /* cambio de color al pasar el mouse */
+}
+
+/* 🚫 Eliminar flechas de desplazamiento */
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
 }
