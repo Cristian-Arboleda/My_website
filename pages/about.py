@@ -1,11 +1,8 @@
 from dash import register_page, html
-import dash_leaflet as dl
 
 register_page(__name__, path='/')
 
 # -------------------------------------------------------------------------------------------------------------------
-
-
 presentation = html.Div(
     id='container_presentation',
     children=[
@@ -29,29 +26,6 @@ presentation = html.Div(
 
 # -------------------------------------------------------------------------------------------------------------------
 
-center = (4.5709, -74.2973)
-map = html.Div(
-    className='content_element',
-    style={'grid-column': ' span 7', 'grid-row': 'span 8', 'flex-direction': 'column'},
-    children=[
-        dl.Map(
-            center=center,
-            zoom=4.5,
-            className='img_content',
-            children=[
-                dl.TileLayer(),
-                dl.Marker(
-                    position=(4.7110, -74.0721),
-                    children=dl.Tooltip("Bogotá")
-                )
-            ]
-        ),
-        html.P(
-            children="Soy de Colombia, un país extraordinario, lleno de paisajes impresionantes y maravillas naturales que inspiran admiración."
-        )
-    ]
-)
-
 map_2 = html.Div(
     className='content_element',
     style={'grid-row': '9 / span 10', 'grid-column': '11 / span 8', 'flex-direction': 'column'},
@@ -69,8 +43,8 @@ map_2 = html.Div(
         html.Span('(Double-click on the map)')
     ]
 )
-# -------------------------------------------------------------------------------------------------------------------
 
+# -------------------------------------------------------------------------------------------------------------------
 university = html.Div(
     className='content_element',
     style={'grid-column': '6 / span 5', 'grid-row': '23 / span 5', 'flex-direction': 'row'},

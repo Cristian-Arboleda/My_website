@@ -1,4 +1,4 @@
-from dash import register_page, html, dcc, callback, Input, Output, State, no_update, ctx
+from dash import register_page, html, dcc, callback, Input, Output, no_update, ctx
 
 register_page(__name__)
 

@@ -2,7 +2,7 @@ from dash import Dash, html, page_container
 
 app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True)
 
-
+server = app.server
 
 from menu import * # Se importa este modulo despues de haber activador use_pages
 
