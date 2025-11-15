@@ -50,7 +50,7 @@ project_data = [
     },
     {
         'title': 'link_in_bio_cristian',
-        'description': 'Interactive dashboard that records and visualizes daily weight progress in a database.',
+        'description': 'My pesonal web page where you can find all my contact links.',
         'url': 'https://cristianarboleda.onrender.com',
         'img': 'link_in_bio_cristian.png',
         'tools': ['python', 'css', 'html', 'dash', 'postgresql'],
